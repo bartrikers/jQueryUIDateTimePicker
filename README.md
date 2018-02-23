@@ -9,7 +9,7 @@ Some key-features:
 - select several themes, including a Mendix based theme
 
 ## Installation
-Add the widget to a page and select a datetime attribute the date/time should be saved to.
+Add the widget to a dataview and select a datetime attribute the date/time should be saved to.
 
 ## Configuration
   #### General
