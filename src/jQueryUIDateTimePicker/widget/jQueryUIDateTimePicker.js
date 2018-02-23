@@ -233,6 +233,7 @@ define([
 
                     /* fix buggy IE focus functionality */
 					/* https://bugs.jqueryui.com/ticket/9125 */
+<<<<<<< HEAD
 					if (self.pickerType === "DatePicker") {
 						var isIE = self._isIE();
 						if (isIE){
@@ -249,6 +250,7 @@ define([
 						$('#ui-datepicker-div').wrap( "<div></div>" ).parent().addClass('theme-' + self.theme);
 					}
 				}
+>>>>>>> 957a6c69f692f8d1e24c956fdd963e11a4d0e227
             };
 
             if (this.pickerType === "DatePicker" || this.pickerType === "DateTimePicker") {
