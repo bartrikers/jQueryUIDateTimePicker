@@ -3,7 +3,7 @@ A simple alternative to the built-in Mendix datepicker, that uses the jQueryUI D
 
 Some key-features:
 - select picker type (datepicker, timepicker, or datetimepicker)
-- set date and timeformat
-- set a year and/or time range
+- set custom date/time format
+- set a year range and/or time range
 - set a custom placeholder text
 - select several themes, including a Mendix based theme
