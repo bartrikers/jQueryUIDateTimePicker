@@ -250,6 +250,13 @@ define([
 						$('#ui-datepicker-div').wrap( "<div></div>" ).parent().addClass('theme-' + self.theme);
 					}
 				}
+                    $(this).datepicker("disable");
+					if (self.pickerType === "DatePicker") {
+						$(this).datepicker("disable");
+						window.setTimeout(function(element) {
+							$(element).datepicker("enable");
+						}.bind(null, this), 50);
+					}
 >>>>>>> 957a6c69f692f8d1e24c956fdd963e11a4d0e227
             };
 
