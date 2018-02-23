@@ -2,8 +2,8 @@
     Custom Mendix Widget
     "jQueryUIDateTimePicker"
     Apache License 2.0
+	Copyright 2018 Bizzomate (Bart Rikers, Joppe van Gisbergen)
     Copyright 2017 Marcus Groen (added functionality)
-    Copyright 2017 Bart Rikers
 */
 define([
     "dojo/_base/declare",
@@ -233,7 +233,6 @@ define([
 
                     /* fix buggy IE focus functionality */
 					/* https://bugs.jqueryui.com/ticket/9125 */
-<<<<<<< HEAD
 					if (self.pickerType === "DatePicker") {
 						var isIE = self._isIE();
 						if (isIE){
@@ -250,14 +249,6 @@ define([
 						$('#ui-datepicker-div').wrap( "<div></div>" ).parent().addClass('theme-' + self.theme);
 					}
 				}
-                    $(this).datepicker("disable");
-					if (self.pickerType === "DatePicker") {
-						$(this).datepicker("disable");
-						window.setTimeout(function(element) {
-							$(element).datepicker("enable");
-						}.bind(null, this), 50);
-					}
->>>>>>> 957a6c69f692f8d1e24c956fdd963e11a4d0e227
             };
 
             if (this.pickerType === "DatePicker" || this.pickerType === "DateTimePicker") {
