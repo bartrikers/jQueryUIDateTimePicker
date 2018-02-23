@@ -230,6 +230,29 @@
 		isRTL: false
 	};
 
+	
+// source: no source
+/* American English translation for the jQuery Timepicker Addon */
+/* Written by Bart Rikers */
+
+	$.timepicker.regional['en-US'] = {
+		timeOnlyTitle: 'Choose Time',
+		timeText: 'Time',
+		hourText: 'Hour',
+		minuteText: 'Minute',
+		secondText: 'Second',
+		millisecText: 'Millisecond',
+		microsecText: 'Microsecond',
+		timezoneText: 'Time Zone',
+		currentText: 'Now',
+		closeText: 'Done',
+		timeFormat: 'hh:mm tt',
+		timeSuffix: '',
+		amNames: ['AM', 'A'],
+		pmNames: ['PM', 'P'],
+		isRTL: false
+	};
+	
 // source: src/i18n/jquery-ui-timepicker-eu.js
 /* Basque trannslation for JQuery Timepicker Addon */
 /* Translated by Xabi Fer */

@@ -10,6 +10,7 @@ define([
     "mxui/widget/_WidgetBase",
     "dijit/_TemplatedMixin",
     "mxui/dom",
+	"dojo/dom-class",
     "dojo/on",
     "dojo/dom-construct",
     "dojo/html",
@@ -20,7 +21,7 @@ define([
     "jQueryUIDateTimePicker/lib/jquery-ui-sliderAccess",
     "jQueryUIDateTimePicker/lib/jquery-ui-timepicker-addon",
     "jQueryUIDateTimePicker/lib/jquery-ui-timepicker-addon-i18n"
-], function(declare, _WidgetBase, _TemplatedMixin, dom, dojoOn, dojoConstruct, dojoHtml, widgetTemplate, $) {
+], function(declare, _WidgetBase, _TemplatedMixin, dom, domClass, dojoOn, dojoConstruct, dojoHtml, widgetTemplate, $) {
     "use strict";
 
     return declare("jQueryUIDateTimePicker.widget.jQueryUIDateTimePicker", [
@@ -32,8 +33,9 @@ define([
 
         // Parameters configured in the Modeler.
         pickerType: "",
+        useCustomDateFormat: "",
         customDateFormat: "",
-        dateFormat: "",
+		addSliderButtons: "",
         showButtonBar: "",
         iconTooltip: "",
         placeholderText: "",
@@ -49,10 +51,15 @@ define([
 
         /* Timepicker options*/
         /* http://trentrichardson.com/examples/timepicker/ */
-        customTimeFormat: false,
-        timeFormat: "",
+        useCustomTimeFormat: false,
+        customTimeFormat: "",
         minTime: "",
         maxTime: "",
+
+		/* Label options */
+		labelCaption: "",
+        labelWidth: "",
+        displayEnum: "",
 
         // Internal variables. Non-primitives created in the prototype are shared between all widget instances.
         _handle: null,
@@ -82,46 +89,108 @@ define([
                 .find("input.mx-dateinput-input")
                 .first()
                 .get(0);
-            $(this._datePicker).attr("placeholder", this.placeholderText);
 
             // substracting the first two characters of the Mendix user language ("nl_NL")
-            var mxLanguage = mx.session.getConfig().uiconfig.locale.substring(0, 2),
-                datePickerLanguage = $.datepicker.regional[mxLanguage],
-                timePickerLanguage = $.timepicker.regional[mxLanguage],
-                customFormatOptions = this._getCustomFormatOptions();
+			var mxConfig = mx.session.getConfig();
+            var mxLanguage = mxConfig.uiconfig.locale.replace("_", "-");
+			var mxLanguageSub = mxLanguage.substring(0, 2);
 
-            this._setParams();
+			//first, try to find language based on full locale string, but replace underscore ("en_US" -> "en-US")
+            var datePickerLanguage = $.datepicker.regional[mxLanguage];
+            var timePickerLanguage = $.timepicker.regional[mxLanguage];
+			
+			//if not found, try to find language based on first two characters ("en")
+			if (!datePickerLanguage) {
+				datePickerLanguage = $.datepicker.regional[mxLanguageSub];
+			}
+			if (!timePickerLanguage) {
+				timePickerLanguage = $.timepicker.regional[mxLanguageSub];
+			}
+			
+			// if still not found, use default ("")
+			if (!datePickerLanguage) {
+				datePickerLanguage = $.datepicker.regional[""];
+			}
+			if (!timePickerLanguage) {
+				timePickerLanguage = $.timepicker.regional[""];
+			}
+			
+			//determine placeholder texts
+			var dateFormat = datePickerLanguage.dateFormat;
+			var timeFormat = timePickerLanguage.timeFormat;
+			
+			if (this.useCustomDateFormat) {
+				dateFormat = this.customDateFormat;
+			}
+			
+			if (this.useCustomTimeFormat) {
+				timeFormat = this.customTimeFormat;
+			} 
+			
+            this._setParams(dateFormat, timeFormat);
 
+			var defaultPlaceholderText = '';
             switch (this.pickerType) {
             case "DatePicker":
                 $(this._datePicker).datepicker(this.params);
                 if (typeof datePickerLanguage !== "undefined") {
+					if (this.params.firstDay) {
+						datePickerLanguage.firstDay = this.params.firstDay;
+					}
                     $(this._datePicker).datepicker("option", datePickerLanguage);
                 }
-                $(this._datePicker).datepicker("option", customFormatOptions);
+				defaultPlaceholderText = dateFormat;
                 break;
             case "TimePicker":
                 $(this._datePicker).timepicker(this.params);
                 if (typeof timePickerLanguage !== "undefined") {
                     $(this._datePicker).timepicker("option", timePickerLanguage);
                 }
-                $(this._datePicker).timepicker("option", customFormatOptions);
+				defaultPlaceholderText = timeFormat;
+				
                 break;
             case "DateTimePicker":
             default:
                 $(this._datePicker).datetimepicker(this.params);
                 if (typeof datePickerLanguage !== "undefined") {
+					if (this.params.firstDay) {
+						datePickerLanguage.firstDay = this.params.firstDay;
+					}
                     $(this._datePicker).datepicker("option", datePickerLanguage);
                 }
-                $(this._datePicker).datepicker("option", customFormatOptions);
                 if (typeof timePickerLanguage !== "undefined") {
                     $(this._datePicker).timepicker("option", timePickerLanguage);
                 }
-                $(this._datePicker).timepicker("option", customFormatOptions);
+				
+				defaultPlaceholderText = dateFormat + " " + timeFormat;
+				
                 break;
             }
 
+			//Set placeholderText
+			if (this.placeholderText && this.placeholderText.trim().length) {
+				defaultPlaceholderText = this.placeholderText;
+			}
+			$(this._datePicker).attr("placeholder", defaultPlaceholderText);
+
+			// Set label
+			if (this.labelCaption && this.labelCaption.trim().length) {
+                this.inputLabel.innerHTML = this.labelCaption;
+            } else {
+                dojoConstruct.destroy(this.inputLabel);
+            }
+
+            if (this.displayEnum === "horizontal") {
+                domClass.add(this.inputLabel, "col-sm-" + this.labelWidth);
+                domClass.add(this.inputWrapper, "col-sm-" + (12 - this.labelWidth));
+            }
+
             this._setupEvents();
+			
+			//load appropriate css theme file
+			if (this.theme != "base") {
+				dom.addCss("widgets/jQueryUIDateTimePicker/widget/ui/jquery-ui-" + this.theme + ".css");
+			}
         },
 
         // mxui.widget._WidgetBase.update is called when context is changed or initialized. Implement to re-render and / or fetch data.
@@ -147,61 +216,81 @@ define([
             $(element).trigger("focus");
         },
 
-        _getCustomFormatOptions: function _getCustomFormatOptions() {
-            var params = {};
-            if (this.customDateFormat) {
-                params.dateFormat = this.dateFormat;
-            }
-            if (this.firstDay !== "Default") {
-                params.firstDay = this.firstDay === "Monday" ? 1 : this._seven;
-            }
-            if (this.customTimeFormat) {
-                params.timeFormat = this.timeFormat;
-            }
-            return params;
-        },
-
-        _setParams: function _setParams() {
+        _setParams: function _setParams(dateFormat, timeFormat) {
             logger.debug(this.id + "._setParams");
+			var self = this;
             var params = {
                 showButtonPanel: this.showButtonBar,
                 onSelect: function(date, i) {
-                    if (date !== i.lastVal) {
-                        /* jQueryUIDateTimePicker doesn't trigger onchange event
-                           so we must trigger it manually in the onSelect function */
-                        dojoOn.emit(this, "change", {
-                            bubbles: true,
-                            cancelable: true
-                        });
-                    }
+					if (date !== i.lastVal) {
+					/* jQueryUIDateTimePicker doesn't trigger onchange event
+					   so we must trigger it manually in the onSelect function */
+						dojoOn.emit(this, "change", {
+							bubbles: false,
+							cancelable: true
+						});
+					}
+
                     /* fix buggy IE focus functionality */
-                    $(this).datepicker("disable");
+					/* https://bugs.jqueryui.com/ticket/9125 */
+					if (self.pickerType === "DatePicker") {
+						var isIE = self._isIE();
+						if (isIE){
+							$(this).datepicker("disable");
+							window.setTimeout(function(element) {
+								$(element).datepicker("enable");
+							}.bind(null, this), 500);
+						}
+					}
                 },
-                onClose: function() {
-                    /* fix buggy IE focus functionality */
-                    window.setTimeout(function(element) {
-                        $(element).datepicker("enable");
-                    }.bind(null, this), 500);
-                }
+				beforeShow: function () {
+					$('#ui-datepicker-div').unwrap();
+					if (self.theme != "base") {
+						$('#ui-datepicker-div').wrap( "<div></div>" ).parent().addClass('theme-' + self.theme);
+					}
+				}
             };
 
             if (this.pickerType === "DatePicker" || this.pickerType === "DateTimePicker") {
                 params.changeMonth = this.showMonthYearMenu;
                 params.changeYear = this.showMonthYearMenu;
-                params.yearRange = this.yearRange === "" ? "-100:+0" : this.yearRange;
+                params.yearRange = this.yearRange === "" ? "-100:+100" : this.yearRange;
                 params.defaultDate = this.defaultDate;
                 params.showWeek = this.showWeekNr;
+				params.dateFormat = dateFormat;
+				if (this.firstDay !== "Default") {
+					params.firstDay = this.firstDay === "Monday" ? 1 : this._seven;
+				}
             }
 
             if (this.pickerType === "TimePicker" || this.pickerType === "DateTimePicker") {
                 params.timeInput = true;
                 params.minTime = this.minTime === "" ? null : this.minTime;
                 params.maxTime = this.maxTime === "" ? null : this.maxTime;
-                params.addSliderAccess = true;
-                params.sliderAccessArgs = { touchonly: false };
+				params.timeFormat = timeFormat;
+                params.addSliderAccess = this.addSliderButtons;
+				if (this.addSliderButtons) {
+					params.sliderAccessArgs = { touchonly: false };
+				}
+				
             }
             this.params = params;
+
         },
+
+		_isIE: function _isIE() {
+			var ua = window.navigator.userAgent;
+			var msie = ua.indexOf("MSIE ");
+
+			if (msie > 0 || !! ua.match(/Trident.*rv\:11\./)) {
+				return true;
+			} else { 
+				return false;
+			}
+			return false;
+
+        },
+
 
         _updateDatepicker: function _updateDatepicker(element, value) {
             logger.debug(this.id + "._updateDatepicker");

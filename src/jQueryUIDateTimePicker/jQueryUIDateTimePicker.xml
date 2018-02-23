@@ -1,30 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<<<<<<< HEAD:jQueryUIDatepicker/jQueryUIDatepicker.xml
-<widget id="jQueryUIDatepicker.widget.jQueryUIDatepicker" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/">
-	<name>jQueryUIDatepicker</name>
-	<description>A simple alternative to the built-in Mendix datepicker, that uses the jQueryUI Datepicker and Trent Richardson's Timepicker addon (http://trentrichardson.com/examples/timepicker/).</description>
-
-	<icon/>
-
-	<properties>
-		<!-- General -->
-		<property key="dateAttribute" type="attribute">
-			<caption>Attribute (path)</caption>
-			<category>General</category>
-			<description/>
-			<attributeTypes>
-				<attributeType name="DateTime"/>
-			</attributeTypes>
-		</property>
-		<property key="pickerType" type="enumeration" required="true" defaultValue="DateTimePicker">
-			<caption>Picker type</caption>
-			<category>General</category>
-			<description>Picker type to be shown.</description>
-=======
 <widget id="jQueryUIDateTimePicker.widget.jQueryUIDateTimePicker" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/">
   <name>jQueryUIDateTimePicker</name>
   <description>A simple alternative to the built-in Mendix datepicker, that uses the jQueryUI Datepicker and Trent Richardson's Timepicker addon (http://trentrichardson.com/examples/timepicker/).</description>
-  <icon>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABgElEQVQ4T43TPUjWURQG8J9KQiQUkgRC4CRB9IkftIogZDhUS9DQWiD2QUgt0iAiLubg5CA4SLWIQ0EKFSQ49EFEDYGKS1QE0Rglxonzj5eXvy8euMO957nPPee5z6mzu9iPn2XQuh3ut+AH/uAUGvCqFkEjtnIF7jYm8sI1fMZCLYIrmE3AEYzgUu7P4hZ6sV1NEi304BxuZvI8htGd+6L8VVzHrwqSvUHwEB9wLxN9eIx2rOVZKx6hLXPfs63pINjAE0SvEaH4VzzFQFXJHUmyjjeRC4IAf8GJCvAUBnEfN8p6T2xzELzFSQT760w04QVO4znuIDQooj5F3gyCSQzhWQpagKKVGVzMg018TE+EPqORD4LjeJeguxir6rsTF3AYv/Ee8yniPw0i5nC5BslOHjpYEES5KziayKU0T7xWFmH1qxivnIVDWERXxY2XWEZ8WxgoMGdS3HDoevUw7ck5iFk4UPJ0WPlBiv6t8EFZifvQj2Noztc/peHiN/7HX+w9S4f3pSYmAAAAAElFTkSuQmCC</icon>
+  <icon>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
+  </icon>
   <properties>
 		<!-- General -->
         <property key="dateAttribute" type="attribute">
@@ -39,19 +18,17 @@
             <caption>Picker type</caption>
             <category>General</category>
             <description>Picker type to be shown.</description>
->>>>>>> pr/1:src/jQueryUIDateTimePicker/jQueryUIDateTimePicker.xml
 			<enumerationValues>
 				<enumerationValue key="DateTimePicker">DateTime</enumerationValue>
 				<enumerationValue key="DatePicker">Date</enumerationValue>
 				<enumerationValue key="TimePicker">Time</enumerationValue>
 			</enumerationValues>
-<<<<<<< HEAD:jQueryUIDatepicker/jQueryUIDatepicker.xml
-		</property>
-		<property key="showButtonBar" type="boolean" required="true" defaultValue="false">
-			<caption>Display button bar</caption>
-			<category>General</category>
-			<description>Display a button for selecting Today's date and a Done button for closing the calendar.</description>
-		</property>
+        </property>
+		<property key="showButtonBar" type="boolean" defaultValue="false">
+            <caption>Display button bar</caption>
+            <category>General</category>
+            <description>Display a button for selecting Today's date and a Done button for closing the calendar.</description>
+        </property>
 		<property key="labelCaption" type="translatableString" required="false">
 			<caption>Label</caption>
 			<category>Display</category>
@@ -71,70 +48,44 @@
 				<enumerationValue key="vertical">Vertical</enumerationValue>
 			</enumerationValues>
 		</property>
-		<!-- Date options -->
-		<property key="dateFormat" type="string" required="true" defaultValue="mm/dd/yy">
-			<caption>Date format</caption>
-			<category>Date options</category>
-			<description>Date format that is used, e.g. mm/dd/yy or dd-mm-yy. See jQueryUI documentation (http://api.jqueryui.com/datepicker/#utility-formatDate) for possible formats.</description>
-		</property>
-		<property key="defaultDate" type="string" required="false">
-			<caption>Default date</caption>
-			<category>Date options</category>
-			<description>Optional default date to start with, should be corresponding to the date format.</description>
-		</property>
-		<property key="yearRange" type="string" required="false" defaultValue="-100:+0">
-			<caption>Range</caption>
-			<category>Date options</category>
-			<description>Range in years, either absolute (1970:2010) or relative (-100:+0)</description>
-		</property>
-		<property key="showMonthYearMenu" type="boolean" required="true" defaultValue="true">
-			<caption>Month / year menus</caption>
-			<category>Date options</category>
-			<description>Show month and year dropdowns in place of the static month/year header to facilitate navigation through large timeframes.</description>
-		</property>
-		<property key="showWeekNr" type="boolean" required="true" defaultValue="false">
-			<caption>Show weeknumber</caption>
-			<category>Date options</category>
-			<description>Show the week of the year.</description>
-		</property>
-		<property key="firstDay" type="enumeration" required="true" defaultValue="Monday">
-			<caption>First day of the week</caption>
-			<category>Date options</category>
-			<description>Only used when weeknumber is shown. The default calculation follows the ISO 8601 definition: the week starts on Monday, the first week of the year contains the first Thursday of the year.</description>
-=======
-        </property>
-		<property key="showButtonBar" type="boolean" defaultValue="false">
-            <caption>Display button bar</caption>
-            <category>General</category>
-            <description>Display a button for selecting Today's date and a Done button for closing the calendar.</description>
+		<property key="placeholderText" type="string" required="false">
+            <caption>Placeholder text</caption>
+            <category>Display</category>
+            <description></description>
         </property>
         <property key="iconTooltip" type="string" required="false">
             <caption>Icon tooltip</caption>
-            <category>General</category>
+            <category>Display</category>
             <description>Tooltip on the calendar icon.</description>
         </property>
-        <property key="placeholderText" type="string" required="false">
-            <caption>Placeholder text</caption>
-            <category>General</category>
-            <description></description>
-        </property>
+		<property key="theme" type="enumeration" defaultValue="mendix" required="true">
+			<caption>Theme</caption>
+			<category>Display</category>
+			<description>Theme to use for the datatime picker</description>
+			<enumerationValues>
+				<enumerationValue key="base">jQueryUI Base</enumerationValue>
+				<enumerationValue key="mendix">Mendix</enumerationValue>				
+				<enumerationValue key="ui_lightness">UI Lightness</enumerationValue>
+				<enumerationValue key="redmond">Redmond</enumerationValue>
+			</enumerationValues>
+		</property>
 		<!-- Date options -->
-		<property key="customDateFormat" type="boolean" defaultValue="false">
+		<property key="useCustomDateFormat" type="boolean" defaultValue="false">
             <caption>Use custom date format</caption>
             <category>Date options</category>
             <description></description>
         </property>
-		<property key="dateFormat" type="string" defaultValue="mm/dd/yy">
-            <caption>Date format</caption>
+		<property key="customDateFormat" type="string" defaultValue="mm/dd/yy" required="false">
+            <caption>Custom Date format</caption>
             <category>Date options</category>
-            <description>Date format that is used, e.g. mm/dd/yy or dd-mm-yy. See jQueryUI documentation (http://api.jqueryui.com/datepicker/#utility-formatDate) for possible formats.</description>
+            <description>Custom date format that is used, e.g. mm/dd/yy or dd-mm-yy. See jQueryUI documentation (http://api.jqueryui.com/datepicker/#utility-formatDate) for possible formats.</description>
         </property>
-        <property key="defaultDate" type="string" defaultValue="01/01/1970" required="false">
+        <property key="defaultDate" type="string" required="false">
             <caption>Default date</caption>
             <category>Date options</category>
             <description>Optional default date to start with, should be corresponding to the date format.</description>
         </property>
-        <property key="yearRange" type="string" defaultValue="-100:+0" required="false">
+        <property key="yearRange" type="string" defaultValue="-100:+100" required="false">
             <caption>Range</caption>
             <category>Date options</category>
             <description>Range in years, either absolute (1970:2010) or relative (-100:+0)</description>
@@ -147,53 +98,43 @@
 		<property key="showWeekNr" type="boolean" defaultValue="false">
             <caption>Show weeknumber</caption>
             <category>Date options</category>
-            <description>Show the week of the year.</description>
+            <description>Show the week of the year. The default calculation follows the ISO 8601 definition: the week starts on Monday, the first week of the year contains the first Thursday of the year.</description>
         </property>
 		<property key="firstDay" type="enumeration" defaultValue="Default">
             <caption>First day of the week</caption>
             <category>Date options</category>
-            <description>Only used when weeknumber is shown. The default calculation follows the ISO 8601 definition: the week starts on Monday, the first week of the year contains the first Thursday of the year.</description>
->>>>>>> pr/1:src/jQueryUIDateTimePicker/jQueryUIDateTimePicker.xml
+            <description>Set the first day of the datepicker (Sunday or Monday)</description>
 			<enumerationValues>
                 <enumerationValue key="Default">Default</enumerationValue>
 				<enumerationValue key="Monday">Monday</enumerationValue>
 				<enumerationValue key="Sunday">Sunday</enumerationValue>
 			</enumerationValues>
-		</property>
+        </property>
 		<!-- Time options -->
-<<<<<<< HEAD:jQueryUIDatepicker/jQueryUIDatepicker.xml
-		<property key="timeFormat" type="string" required="true" defaultValue="hh:mm tt">
-			<caption>Time format</caption>
-			<category>Time options</category>
-			<description>Time format that is used, e.g. hh:mm tt or HH:mm. See documentation (http://trentrichardson.com/examples/timepicker/#tp-formatting) for possible formats.</description>
-		</property>
-=======
-		<property key="customTimeFormat" type="boolean" defaultValue="false">
+		<property key="useCustomTimeFormat" type="boolean" defaultValue="false">
             <caption>Use custom time format</caption>
             <category>Time options</category>
             <description></description>
         </property>
-		<property key="timeFormat" type="string" defaultValue="hh:mm tt">
+		<property key="customTimeFormat" type="string" defaultValue="hh:mm tt">
             <caption>Time format</caption>
             <category>Time options</category>
             <description>Time format that is used, e.g. hh:mm tt or HH:mm. See documentation (http://trentrichardson.com/examples/timepicker/#tp-formatting) for possible formats.</description>
         </property>
->>>>>>> pr/1:src/jQueryUIDateTimePicker/jQueryUIDateTimePicker.xml
 		<property key="minTime" type="string" required="false">
-			<caption>Minimum time</caption>
-			<category>Time options</category>
-			<description>String of the minimum time allowed. '8:00 am' will restrict to times after 8am. Should be corresponding to the time format.</description>
-		</property>
+            <caption>Minimum time</caption>
+            <category>Time options</category>
+            <description>String of the minimum time allowed. '8:00 am' will restrict to times after 8am. Should be corresponding to the time format.</description>
+        </property>
 		<property key="maxTime" type="string" required="false">
-<<<<<<< HEAD:jQueryUIDatepicker/jQueryUIDatepicker.xml
-			<caption>Maximum time</caption>
-			<category>Time options</category>
-			<description>String of the maximum time allowed. '8:00 pm' will restrict to times before 8pm. Should be corresponding to the time format.</description>
-		</property>
-=======
             <caption>Maximum time</caption>
             <category>Time options</category>
             <description>String of the maximum time allowed. '8:00 pm' will restrict to times before 8pm. Should be corresponding to the time format.</description>
+        </property>
+		<property key="addSliderButtons" type="boolean" defaultValue="false">
+            <caption>Add slider buttons</caption>
+            <category>Time options</category>
+            <description>Show +/- buttons next to time-slider</description>
         </property>
         <!-- Behavior options -->
         <property key="onChangeMicroflow" type="microflow" required="false">
@@ -217,7 +158,5 @@
             <category>Behavior</category>
             <description>Microflow call type.</description>
         </property>
->>>>>>> pr/1:src/jQueryUIDateTimePicker/jQueryUIDateTimePicker.xml
 	</properties>
 </widget>
-

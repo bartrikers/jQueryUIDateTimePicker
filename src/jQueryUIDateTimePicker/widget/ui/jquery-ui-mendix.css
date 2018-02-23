@@ -1,0 +1,911 @@
+/*! jQuery UI - v1.12.1 - 2018-02-22
+* http://jqueryui.com
+* Includes: core.css, button.css, controlgroup.css, checkboxradio.css, datepicker.css, slider.css, theme.css
+* To view and modify this theme, visit http://jqueryui.com/themeroller/?scope=.theme-mendix&folderName=theme-mendix&bgImgOpacityError=&bgImgOpacityHighlight=&bgImgOpacityActive=&bgImgOpacityHover=&bgImgOpacityDefault=&bgImgOpacityContent=&bgImgOpacityHeader=&cornerRadiusShadow=8px&offsetLeftShadow=0px&offsetTopShadow=0px&thicknessShadow=5px&opacityShadow=30&bgImgOpacityShadow=0&bgTextureShadow=flat&bgColorShadow=%23666666&opacityOverlay=30&bgImgOpacityOverlay=0&bgTextureOverlay=flat&bgColorOverlay=%23aaaaaa&iconColorError=%23cc0000&fcError=%235f3f3f&borderColorError=%23f1a899&bgTextureError=flat&bgColorError=%23fddfdf&iconColorHighlight=%23777620&fcHighlight=%23777620&borderColorHighlight=%23dad55e&bgTextureHighlight=flat&bgColorHighlight=%23fffa90&iconColorActive=%23ffffff&fcActive=%23ffffff&borderColorActive=%2359C2E6&bgTextureActive=flat&bgColorActive=%2359C2E6&iconColorHover=%23555555&fcHover=%232b2b2b&borderColorHover=%23cccccc&bgTextureHover=flat&bgColorHover=%23DBDCDD&iconColorDefault=%23777777&fcDefault=%23454545&borderColorDefault=%23cccccc&bgTextureDefault=flat&bgColorDefault=%23EFF0F2&iconColorContent=%23444444&fcContent=%23333333&borderColorContent=%23EFF0F2&bgTextureContent=flat&bgColorContent=%23EFF0F2&iconColorHeader=%23FFF&fcHeader=%23FFF&borderColorHeader=%2326323D&bgTextureHeader=flat&bgColorHeader=%2326323D&cornerRadius=3px&fwDefault=normal&fsDefault=1em&ffDefault=Arial%2CHelvetica%2Csans-serif
+* Copyright jQuery Foundation and other contributors; Licensed MIT */
+
+/* Layout helpers
+----------------------------------*/
+.theme-mendix .ui-helper-hidden {
+	display: none;
+}
+.theme-mendix .ui-helper-hidden-accessible {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+.theme-mendix .ui-helper-reset {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	line-height: 1.3;
+	text-decoration: none;
+	font-size: 100%;
+	list-style: none;
+}
+.theme-mendix .ui-helper-clearfix:before,
+.theme-mendix .ui-helper-clearfix:after {
+	content: "";
+	display: table;
+	border-collapse: collapse;
+}
+.theme-mendix .ui-helper-clearfix:after {
+	clear: both;
+}
+.theme-mendix .ui-helper-zfix {
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	position: absolute;
+	opacity: 0;
+	filter:Alpha(Opacity=0); /* support: IE8 */
+}
+
+.theme-mendix .ui-front {
+	z-index: 100;
+}
+
+
+/* Interaction Cues
+----------------------------------*/
+.theme-mendix .ui-state-disabled {
+	cursor: default !important;
+	pointer-events: none;
+}
+
+
+/* Icons
+----------------------------------*/
+.theme-mendix .ui-icon {
+	display: inline-block;
+	vertical-align: middle;
+	margin-top: -.25em;
+	position: relative;
+	text-indent: -99999px;
+	overflow: hidden;
+	background-repeat: no-repeat;
+}
+
+.theme-mendix .ui-widget-icon-block {
+	left: 50%;
+	margin-left: -8px;
+	display: block;
+}
+
+/* Misc visuals
+----------------------------------*/
+
+/* Overlays */
+.theme-mendix .ui-widget-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.theme-mendix .ui-button {
+	padding: .4em 1em;
+	display: inline-block;
+	position: relative;
+	line-height: normal;
+	margin-right: .1em;
+	cursor: pointer;
+	vertical-align: middle;
+	text-align: center;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+	/* Support: IE <= 11 */
+	overflow: visible;
+}
+
+.theme-mendix .ui-button,
+.theme-mendix .ui-button:link,
+.theme-mendix .ui-button:visited,
+.theme-mendix .ui-button:hover,
+.theme-mendix .ui-button:active {
+	text-decoration: none;
+}
+
+/* to make room for the icon, a width needs to be set here */
+.theme-mendix .ui-button-icon-only {
+	width: 2em;
+	box-sizing: border-box;
+	text-indent: -9999px;
+	white-space: nowrap;
+}
+
+/* no icon support for input elements */
+input.theme-mendix .ui-button.ui-button-icon-only {
+	text-indent: 0;
+}
+
+/* button icon element(s) */
+.theme-mendix .ui-button-icon-only .ui-icon {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -8px;
+	margin-left: -8px;
+}
+
+.theme-mendix .ui-button.ui-icon-notext .ui-icon {
+	padding: 0;
+	width: 2.1em;
+	height: 2.1em;
+	text-indent: -9999px;
+	white-space: nowrap;
+
+}
+
+input.theme-mendix .ui-button.ui-icon-notext .ui-icon {
+	width: auto;
+	height: auto;
+	text-indent: 0;
+	white-space: normal;
+	padding: .4em 1em;
+}
+
+/* workarounds */
+/* Support: Firefox 5 - 40 */
+input.theme-mendix .ui-button::-moz-focus-inner,
+button.theme-mendix .ui-button::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+}
+.theme-mendix .ui-controlgroup {
+	vertical-align: middle;
+	display: inline-block;
+}
+.theme-mendix .ui-controlgroup > .ui-controlgroup-item {
+	float: left;
+	margin-left: 0;
+	margin-right: 0;
+}
+.theme-mendix .ui-controlgroup > .ui-controlgroup-item:focus,
+.theme-mendix .ui-controlgroup > .ui-controlgroup-item.ui-visual-focus {
+	z-index: 9999;
+}
+.theme-mendix .ui-controlgroup-vertical > .ui-controlgroup-item {
+	display: block;
+	float: none;
+	width: 100%;
+	margin-top: 0;
+	margin-bottom: 0;
+	text-align: left;
+}
+.theme-mendix .ui-controlgroup-vertical .ui-controlgroup-item {
+	box-sizing: border-box;
+}
+.theme-mendix .ui-controlgroup .ui-controlgroup-label {
+	padding: .4em 1em;
+}
+.theme-mendix .ui-controlgroup .ui-controlgroup-label span {
+	font-size: 80%;
+}
+.theme-mendix .ui-controlgroup-horizontal .ui-controlgroup-label + .ui-controlgroup-item {
+	border-left: none;
+}
+.theme-mendix .ui-controlgroup-vertical .ui-controlgroup-label + .ui-controlgroup-item {
+	border-top: none;
+}
+.theme-mendix .ui-controlgroup-horizontal .ui-controlgroup-label.ui-widget-content {
+	border-right: none;
+}
+.theme-mendix .ui-controlgroup-vertical .ui-controlgroup-label.ui-widget-content {
+	border-bottom: none;
+}
+
+/* Spinner specific style fixes */
+.theme-mendix .ui-controlgroup-vertical .ui-spinner-input {
+
+	/* Support: IE8 only, Android < 4.4 only */
+	width: 75%;
+	width: calc( 100% - 2.4em );
+}
+.theme-mendix .ui-controlgroup-vertical .ui-spinner .ui-spinner-up {
+	border-top-style: solid;
+}
+
+.theme-mendix .ui-checkboxradio-label .ui-icon-background {
+	box-shadow: inset 1px 1px 1px #ccc;
+	border-radius: .12em;
+	border: none;
+}
+.theme-mendix .ui-checkboxradio-radio-label .ui-icon-background {
+	width: 16px;
+	height: 16px;
+	border-radius: 1em;
+	overflow: visible;
+	border: none;
+}
+.theme-mendix .ui-checkboxradio-radio-label.ui-checkboxradio-checked .ui-icon,
+.theme-mendix .ui-checkboxradio-radio-label.ui-checkboxradio-checked:hover .ui-icon {
+	background-image: none;
+	width: 8px;
+	height: 8px;
+	border-width: 4px;
+	border-style: solid;
+}
+.theme-mendix .ui-checkboxradio-disabled {
+	pointer-events: none;
+}
+.theme-mendix .ui-datepicker {
+	width: 17em;
+	padding: .2em .2em 0;
+	display: none;
+}
+.theme-mendix .ui-datepicker .ui-datepicker-header {
+	position: relative;
+	padding: .2em 0;
+}
+.theme-mendix .ui-datepicker .ui-datepicker-prev,
+.theme-mendix .ui-datepicker .ui-datepicker-next {
+	position: absolute;
+	top: 2px;
+	width: 1.8em;
+	height: 1.8em;
+}
+.theme-mendix .ui-datepicker .ui-datepicker-prev-hover,
+.theme-mendix .ui-datepicker .ui-datepicker-next-hover {
+	top: 1px;
+}
+.theme-mendix .ui-datepicker .ui-datepicker-prev {
+	left: 2px;
+}
+.theme-mendix .ui-datepicker .ui-datepicker-next {
+	right: 2px;
+}
+.theme-mendix .ui-datepicker .ui-datepicker-prev-hover {
+	left: 1px;
+}
+.theme-mendix .ui-datepicker .ui-datepicker-next-hover {
+	right: 1px;
+}
+.theme-mendix .ui-datepicker .ui-datepicker-prev span,
+.theme-mendix .ui-datepicker .ui-datepicker-next span {
+	display: block;
+	position: absolute;
+	left: 50%;
+	margin-left: -8px;
+	top: 50%;
+	margin-top: -8px;
+}
+.theme-mendix .ui-datepicker .ui-datepicker-title {
+	margin: 0 2.3em;
+	line-height: 1.8em;
+	text-align: center;
+}
+.theme-mendix .ui-datepicker .ui-datepicker-title select {
+	font-size: 1em;
+	margin: 1px 0;
+}
+.theme-mendix .ui-datepicker select.ui-datepicker-month,
+.theme-mendix .ui-datepicker select.ui-datepicker-year {
+	width: 45%;
+}
+.theme-mendix .ui-datepicker table {
+	width: 100%;
+	font-size: .9em;
+	border-collapse: collapse;
+	margin: 0 0 .4em;
+}
+.theme-mendix .ui-datepicker th {
+	padding: .7em .3em;
+	text-align: center;
+	font-weight: bold;
+	border: 0;
+}
+.theme-mendix .ui-datepicker td {
+	border: 0;
+	padding: 1px;
+}
+.theme-mendix .ui-datepicker td span,
+.theme-mendix .ui-datepicker td a {
+	display: block;
+	padding: .2em;
+	text-align: right;
+	text-decoration: none;
+}
+.theme-mendix .ui-datepicker .ui-datepicker-buttonpane {
+	background-image: none;
+	margin: .7em 0 0 0;
+	padding: 0 .2em;
+	border-left: 0;
+	border-right: 0;
+	border-bottom: 0;
+}
+.theme-mendix .ui-datepicker .ui-datepicker-buttonpane button {
+	float: right;
+	margin: .5em .2em .4em;
+	cursor: pointer;
+	padding: .2em .6em .3em .6em;
+	width: auto;
+	overflow: visible;
+}
+.theme-mendix .ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {
+	float: left;
+}
+
+/* with multiple calendars */
+.theme-mendix .ui-datepicker.ui-datepicker-multi {
+	width: auto;
+}
+.theme-mendix .ui-datepicker-multi .ui-datepicker-group {
+	float: left;
+}
+.theme-mendix .ui-datepicker-multi .ui-datepicker-group table {
+	width: 95%;
+	margin: 0 auto .4em;
+}
+.theme-mendix .ui-datepicker-multi-2 .ui-datepicker-group {
+	width: 50%;
+}
+.theme-mendix .ui-datepicker-multi-3 .ui-datepicker-group {
+	width: 33.3%;
+}
+.theme-mendix .ui-datepicker-multi-4 .ui-datepicker-group {
+	width: 25%;
+}
+.theme-mendix .ui-datepicker-multi .ui-datepicker-group-last .ui-datepicker-header,
+.theme-mendix .ui-datepicker-multi .ui-datepicker-group-middle .ui-datepicker-header {
+	border-left-width: 0;
+}
+.theme-mendix .ui-datepicker-multi .ui-datepicker-buttonpane {
+	clear: left;
+}
+.theme-mendix .ui-datepicker-row-break {
+	clear: both;
+	width: 100%;
+	font-size: 0;
+}
+
+/* RTL support */
+.theme-mendix .ui-datepicker-rtl {
+	direction: rtl;
+}
+.theme-mendix .ui-datepicker-rtl .ui-datepicker-prev {
+	right: 2px;
+	left: auto;
+}
+.theme-mendix .ui-datepicker-rtl .ui-datepicker-next {
+	left: 2px;
+	right: auto;
+}
+.theme-mendix .ui-datepicker-rtl .ui-datepicker-prev:hover {
+	right: 1px;
+	left: auto;
+}
+.theme-mendix .ui-datepicker-rtl .ui-datepicker-next:hover {
+	left: 1px;
+	right: auto;
+}
+.theme-mendix .ui-datepicker-rtl .ui-datepicker-buttonpane {
+	clear: right;
+}
+.theme-mendix .ui-datepicker-rtl .ui-datepicker-buttonpane button {
+	float: left;
+}
+.theme-mendix .ui-datepicker-rtl .ui-datepicker-buttonpane button.ui-datepicker-current,
+.theme-mendix .ui-datepicker-rtl .ui-datepicker-group {
+	float: right;
+}
+.theme-mendix .ui-datepicker-rtl .ui-datepicker-group-last .ui-datepicker-header,
+.theme-mendix .ui-datepicker-rtl .ui-datepicker-group-middle .ui-datepicker-header {
+	border-right-width: 0;
+	border-left-width: 1px;
+}
+
+/* Icons */
+.theme-mendix .ui-datepicker .ui-icon {
+	display: block;
+	text-indent: -99999px;
+	overflow: hidden;
+	background-repeat: no-repeat;
+	left: .5em;
+	top: .3em;
+}
+.theme-mendix .ui-slider {
+	position: relative;
+	text-align: left;
+}
+.theme-mendix .ui-slider .ui-slider-handle {
+	position: absolute;
+	z-index: 2;
+	width: 1.2em;
+	height: 1.2em;
+	cursor: default;
+	-ms-touch-action: none;
+	touch-action: none;
+}
+.theme-mendix .ui-slider .ui-slider-range {
+	position: absolute;
+	z-index: 1;
+	font-size: .7em;
+	display: block;
+	border: 0;
+	background-position: 0 0;
+}
+
+/* support: IE8 - See #6727 */
+.theme-mendix .ui-slider.ui-state-disabled .ui-slider-handle,
+.theme-mendix .ui-slider.ui-state-disabled .ui-slider-range {
+	filter: inherit;
+}
+
+.theme-mendix .ui-slider-horizontal {
+	height: .8em;
+}
+.theme-mendix .ui-slider-horizontal .ui-slider-handle {
+	top: -.3em;
+	margin-left: -.6em;
+}
+.theme-mendix .ui-slider-horizontal .ui-slider-range {
+	top: 0;
+	height: 100%;
+}
+.theme-mendix .ui-slider-horizontal .ui-slider-range-min {
+	left: 0;
+}
+.theme-mendix .ui-slider-horizontal .ui-slider-range-max {
+	right: 0;
+}
+
+.theme-mendix .ui-slider-vertical {
+	width: .8em;
+	height: 100px;
+}
+.theme-mendix .ui-slider-vertical .ui-slider-handle {
+	left: -.3em;
+	margin-left: 0;
+	margin-bottom: -.6em;
+}
+.theme-mendix .ui-slider-vertical .ui-slider-range {
+	left: 0;
+	width: 100%;
+}
+.theme-mendix .ui-slider-vertical .ui-slider-range-min {
+	bottom: 0;
+}
+.theme-mendix .ui-slider-vertical .ui-slider-range-max {
+	top: 0;
+}
+
+/* Component containers
+----------------------------------*/
+.theme-mendix .ui-widget {
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 1em;
+}
+.theme-mendix .ui-widget .ui-widget {
+	font-size: 1em;
+}
+.theme-mendix .ui-widget input,
+.theme-mendix .ui-widget select,
+.theme-mendix .ui-widget textarea,
+.theme-mendix .ui-widget button {
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 1em;
+}
+.theme-mendix .ui-widget.ui-widget-content {
+	border: 1px solid #cccccc;
+}
+.theme-mendix .ui-widget-content {
+	border: 1px solid #EFF0F2;
+	background: #EFF0F2;
+	color: #333333;
+}
+.theme-mendix .ui-widget-content a {
+	color: #333333;
+}
+.theme-mendix .ui-widget-header {
+	border: 1px solid #26323D;
+	background: #26323D;
+	color: #FFF;
+	font-weight: bold;
+}
+.theme-mendix .ui-widget-header a {
+	color: #FFF;
+}
+
+/* Interaction states
+----------------------------------*/
+.theme-mendix .ui-state-default,
+.theme-mendix .ui-widget-content .ui-state-default,
+.theme-mendix .ui-widget-header .ui-state-default,
+.theme-mendix .ui-button,
+
+/* We use html here because we need a greater specificity to make sure disabled
+works properly when clicked or hovered */
+html .theme-mendix .ui-button.ui-state-disabled:hover,
+html .theme-mendix .ui-button.ui-state-disabled:active {
+	border: 1px solid #cccccc;
+	background: #EFF0F2;
+	font-weight: normal;
+	color: #454545;
+}
+.theme-mendix .ui-state-default a,
+.theme-mendix .ui-state-default a:link,
+.theme-mendix .ui-state-default a:visited,
+a.theme-mendix .ui-button,
+a:link.theme-mendix .ui-button,
+a:visited.theme-mendix .ui-button,
+.theme-mendix .ui-button {
+	color: #454545;
+	text-decoration: none;
+}
+.theme-mendix .ui-state-hover,
+.theme-mendix .ui-widget-content .ui-state-hover,
+.theme-mendix .ui-widget-header .ui-state-hover,
+.theme-mendix .ui-state-focus,
+.theme-mendix .ui-widget-content .ui-state-focus,
+.theme-mendix .ui-widget-header .ui-state-focus,
+.theme-mendix .ui-button:hover,
+.theme-mendix .ui-button:focus {
+	border: 1px solid #cccccc;
+	background: #DBDCDD;
+	font-weight: normal;
+	color: #2b2b2b;
+}
+.theme-mendix .ui-state-hover a,
+.theme-mendix .ui-state-hover a:hover,
+.theme-mendix .ui-state-hover a:link,
+.theme-mendix .ui-state-hover a:visited,
+.theme-mendix .ui-state-focus a,
+.theme-mendix .ui-state-focus a:hover,
+.theme-mendix .ui-state-focus a:link,
+.theme-mendix .ui-state-focus a:visited,
+a.theme-mendix .ui-button:hover,
+a.theme-mendix .ui-button:focus {
+	color: #2b2b2b;
+	text-decoration: none;
+}
+
+.theme-mendix .ui-visual-focus {
+	box-shadow: 0 0 3px 1px rgb(94, 158, 214);
+}
+.theme-mendix .ui-state-active,
+.theme-mendix .ui-widget-content .ui-state-active,
+.theme-mendix .ui-widget-header .ui-state-active,
+a.theme-mendix .ui-button:active,
+.theme-mendix .ui-button:active,
+.theme-mendix .ui-button.ui-state-active:hover {
+	border: 1px solid #59C2E6;
+	background: #59C2E6;
+	font-weight: normal;
+	color: #ffffff;
+}
+.theme-mendix .ui-icon-background,
+.theme-mendix .ui-state-active .ui-icon-background {
+	border: #59C2E6;
+	background-color: #ffffff;
+}
+.theme-mendix .ui-state-active a,
+.theme-mendix .ui-state-active a:link,
+.theme-mendix .ui-state-active a:visited {
+	color: #ffffff;
+	text-decoration: none;
+}
+
+/* Interaction Cues
+----------------------------------*/
+.theme-mendix .ui-state-highlight,
+.theme-mendix .ui-widget-content .ui-state-highlight,
+.theme-mendix .ui-widget-header .ui-state-highlight {
+	border: 1px solid #dad55e;
+	background: #fffa90;
+	color: #777620;
+}
+.theme-mendix .ui-state-checked {
+	border: 1px solid #dad55e;
+	background: #fffa90;
+}
+.theme-mendix .ui-state-highlight a,
+.theme-mendix .ui-widget-content .ui-state-highlight a,
+.theme-mendix .ui-widget-header .ui-state-highlight a {
+	color: #777620;
+}
+.theme-mendix .ui-state-error,
+.theme-mendix .ui-widget-content .ui-state-error,
+.theme-mendix .ui-widget-header .ui-state-error {
+	border: 1px solid #f1a899;
+	background: #fddfdf;
+	color: #5f3f3f;
+}
+.theme-mendix .ui-state-error a,
+.theme-mendix .ui-widget-content .ui-state-error a,
+.theme-mendix .ui-widget-header .ui-state-error a {
+	color: #5f3f3f;
+}
+.theme-mendix .ui-state-error-text,
+.theme-mendix .ui-widget-content .ui-state-error-text,
+.theme-mendix .ui-widget-header .ui-state-error-text {
+	color: #5f3f3f;
+}
+.theme-mendix .ui-priority-primary,
+.theme-mendix .ui-widget-content .ui-priority-primary,
+.theme-mendix .ui-widget-header .ui-priority-primary {
+	font-weight: bold;
+}
+.theme-mendix .ui-priority-secondary,
+.theme-mendix .ui-widget-content .ui-priority-secondary,
+.theme-mendix .ui-widget-header .ui-priority-secondary {
+	opacity: .7;
+	filter:Alpha(Opacity=70); /* support: IE8 */
+	font-weight: normal;
+}
+.theme-mendix .ui-state-disabled,
+.theme-mendix .ui-widget-content .ui-state-disabled,
+.theme-mendix .ui-widget-header .ui-state-disabled {
+	opacity: .35;
+	filter:Alpha(Opacity=35); /* support: IE8 */
+	background-image: none;
+}
+.theme-mendix .ui-state-disabled .ui-icon {
+	filter:Alpha(Opacity=35); /* support: IE8 - See #6059 */
+}
+
+/* Icons
+----------------------------------*/
+
+/* states and images */
+.theme-mendix .ui-icon {
+	width: 16px;
+	height: 16px;
+}
+.theme-mendix .ui-icon,
+.theme-mendix .ui-widget-content .ui-icon {
+	background-image: url("images/ui-icons_444444_256x240.png");
+}
+.theme-mendix .ui-widget-header .ui-icon {
+	background-image: url("images/ui-icons_FFF_256x240.png");
+}
+.theme-mendix .ui-state-hover .ui-icon,
+.theme-mendix .ui-state-focus .ui-icon,
+.theme-mendix .ui-button:hover .ui-icon,
+.theme-mendix .ui-button:focus .ui-icon {
+	background-image: url("images/ui-icons_555555_256x240.png");
+}
+.theme-mendix .ui-state-active .ui-icon,
+.theme-mendix .ui-button:active .ui-icon {
+	background-image: url("images/ui-icons_ffffff_256x240.png");
+}
+.theme-mendix .ui-state-highlight .ui-icon,
+.theme-mendix .ui-button .ui-state-highlight.ui-icon {
+	background-image: url("images/ui-icons_777620_256x240.png");
+}
+.theme-mendix .ui-state-error .ui-icon,
+.theme-mendix .ui-state-error-text .ui-icon {
+	background-image: url("images/ui-icons_cc0000_256x240.png");
+}
+.theme-mendix .ui-button .ui-icon {
+	background-image: url("images/ui-icons_777777_256x240.png");
+}
+
+/* positioning */
+.theme-mendix .ui-icon-blank { background-position: 16px 16px; }
+.theme-mendix .ui-icon-caret-1-n { background-position: 0 0; }
+.theme-mendix .ui-icon-caret-1-ne { background-position: -16px 0; }
+.theme-mendix .ui-icon-caret-1-e { background-position: -32px 0; }
+.theme-mendix .ui-icon-caret-1-se { background-position: -48px 0; }
+.theme-mendix .ui-icon-caret-1-s { background-position: -65px 0; }
+.theme-mendix .ui-icon-caret-1-sw { background-position: -80px 0; }
+.theme-mendix .ui-icon-caret-1-w { background-position: -96px 0; }
+.theme-mendix .ui-icon-caret-1-nw { background-position: -112px 0; }
+.theme-mendix .ui-icon-caret-2-n-s { background-position: -128px 0; }
+.theme-mendix .ui-icon-caret-2-e-w { background-position: -144px 0; }
+.theme-mendix .ui-icon-triangle-1-n { background-position: 0 -16px; }
+.theme-mendix .ui-icon-triangle-1-ne { background-position: -16px -16px; }
+.theme-mendix .ui-icon-triangle-1-e { background-position: -32px -16px; }
+.theme-mendix .ui-icon-triangle-1-se { background-position: -48px -16px; }
+.theme-mendix .ui-icon-triangle-1-s { background-position: -65px -16px; }
+.theme-mendix .ui-icon-triangle-1-sw { background-position: -80px -16px; }
+.theme-mendix .ui-icon-triangle-1-w { background-position: -96px -16px; }
+.theme-mendix .ui-icon-triangle-1-nw { background-position: -112px -16px; }
+.theme-mendix .ui-icon-triangle-2-n-s { background-position: -128px -16px; }
+.theme-mendix .ui-icon-triangle-2-e-w { background-position: -144px -16px; }
+.theme-mendix .ui-icon-arrow-1-n { background-position: 0 -32px; }
+.theme-mendix .ui-icon-arrow-1-ne { background-position: -16px -32px; }
+.theme-mendix .ui-icon-arrow-1-e { background-position: -32px -32px; }
+.theme-mendix .ui-icon-arrow-1-se { background-position: -48px -32px; }
+.theme-mendix .ui-icon-arrow-1-s { background-position: -65px -32px; }
+.theme-mendix .ui-icon-arrow-1-sw { background-position: -80px -32px; }
+.theme-mendix .ui-icon-arrow-1-w { background-position: -96px -32px; }
+.theme-mendix .ui-icon-arrow-1-nw { background-position: -112px -32px; }
+.theme-mendix .ui-icon-arrow-2-n-s { background-position: -128px -32px; }
+.theme-mendix .ui-icon-arrow-2-ne-sw { background-position: -144px -32px; }
+.theme-mendix .ui-icon-arrow-2-e-w { background-position: -160px -32px; }
+.theme-mendix .ui-icon-arrow-2-se-nw { background-position: -176px -32px; }
+.theme-mendix .ui-icon-arrowstop-1-n { background-position: -192px -32px; }
+.theme-mendix .ui-icon-arrowstop-1-e { background-position: -208px -32px; }
+.theme-mendix .ui-icon-arrowstop-1-s { background-position: -224px -32px; }
+.theme-mendix .ui-icon-arrowstop-1-w { background-position: -240px -32px; }
+.theme-mendix .ui-icon-arrowthick-1-n { background-position: 1px -48px; }
+.theme-mendix .ui-icon-arrowthick-1-ne { background-position: -16px -48px; }
+.theme-mendix .ui-icon-arrowthick-1-e { background-position: -32px -48px; }
+.theme-mendix .ui-icon-arrowthick-1-se { background-position: -48px -48px; }
+.theme-mendix .ui-icon-arrowthick-1-s { background-position: -64px -48px; }
+.theme-mendix .ui-icon-arrowthick-1-sw { background-position: -80px -48px; }
+.theme-mendix .ui-icon-arrowthick-1-w { background-position: -96px -48px; }
+.theme-mendix .ui-icon-arrowthick-1-nw { background-position: -112px -48px; }
+.theme-mendix .ui-icon-arrowthick-2-n-s { background-position: -128px -48px; }
+.theme-mendix .ui-icon-arrowthick-2-ne-sw { background-position: -144px -48px; }
+.theme-mendix .ui-icon-arrowthick-2-e-w { background-position: -160px -48px; }
+.theme-mendix .ui-icon-arrowthick-2-se-nw { background-position: -176px -48px; }
+.theme-mendix .ui-icon-arrowthickstop-1-n { background-position: -192px -48px; }
+.theme-mendix .ui-icon-arrowthickstop-1-e { background-position: -208px -48px; }
+.theme-mendix .ui-icon-arrowthickstop-1-s { background-position: -224px -48px; }
+.theme-mendix .ui-icon-arrowthickstop-1-w { background-position: -240px -48px; }
+.theme-mendix .ui-icon-arrowreturnthick-1-w { background-position: 0 -64px; }
+.theme-mendix .ui-icon-arrowreturnthick-1-n { background-position: -16px -64px; }
+.theme-mendix .ui-icon-arrowreturnthick-1-e { background-position: -32px -64px; }
+.theme-mendix .ui-icon-arrowreturnthick-1-s { background-position: -48px -64px; }
+.theme-mendix .ui-icon-arrowreturn-1-w { background-position: -64px -64px; }
+.theme-mendix .ui-icon-arrowreturn-1-n { background-position: -80px -64px; }
+.theme-mendix .ui-icon-arrowreturn-1-e { background-position: -96px -64px; }
+.theme-mendix .ui-icon-arrowreturn-1-s { background-position: -112px -64px; }
+.theme-mendix .ui-icon-arrowrefresh-1-w { background-position: -128px -64px; }
+.theme-mendix .ui-icon-arrowrefresh-1-n { background-position: -144px -64px; }
+.theme-mendix .ui-icon-arrowrefresh-1-e { background-position: -160px -64px; }
+.theme-mendix .ui-icon-arrowrefresh-1-s { background-position: -176px -64px; }
+.theme-mendix .ui-icon-arrow-4 { background-position: 0 -80px; }
+.theme-mendix .ui-icon-arrow-4-diag { background-position: -16px -80px; }
+.theme-mendix .ui-icon-extlink { background-position: -32px -80px; }
+.theme-mendix .ui-icon-newwin { background-position: -48px -80px; }
+.theme-mendix .ui-icon-refresh { background-position: -64px -80px; }
+.theme-mendix .ui-icon-shuffle { background-position: -80px -80px; }
+.theme-mendix .ui-icon-transfer-e-w { background-position: -96px -80px; }
+.theme-mendix .ui-icon-transferthick-e-w { background-position: -112px -80px; }
+.theme-mendix .ui-icon-folder-collapsed { background-position: 0 -96px; }
+.theme-mendix .ui-icon-folder-open { background-position: -16px -96px; }
+.theme-mendix .ui-icon-document { background-position: -32px -96px; }
+.theme-mendix .ui-icon-document-b { background-position: -48px -96px; }
+.theme-mendix .ui-icon-note { background-position: -64px -96px; }
+.theme-mendix .ui-icon-mail-closed { background-position: -80px -96px; }
+.theme-mendix .ui-icon-mail-open { background-position: -96px -96px; }
+.theme-mendix .ui-icon-suitcase { background-position: -112px -96px; }
+.theme-mendix .ui-icon-comment { background-position: -128px -96px; }
+.theme-mendix .ui-icon-person { background-position: -144px -96px; }
+.theme-mendix .ui-icon-print { background-position: -160px -96px; }
+.theme-mendix .ui-icon-trash { background-position: -176px -96px; }
+.theme-mendix .ui-icon-locked { background-position: -192px -96px; }
+.theme-mendix .ui-icon-unlocked { background-position: -208px -96px; }
+.theme-mendix .ui-icon-bookmark { background-position: -224px -96px; }
+.theme-mendix .ui-icon-tag { background-position: -240px -96px; }
+.theme-mendix .ui-icon-home { background-position: 0 -112px; }
+.theme-mendix .ui-icon-flag { background-position: -16px -112px; }
+.theme-mendix .ui-icon-calendar { background-position: -32px -112px; }
+.theme-mendix .ui-icon-cart { background-position: -48px -112px; }
+.theme-mendix .ui-icon-pencil { background-position: -64px -112px; }
+.theme-mendix .ui-icon-clock { background-position: -80px -112px; }
+.theme-mendix .ui-icon-disk { background-position: -96px -112px; }
+.theme-mendix .ui-icon-calculator { background-position: -112px -112px; }
+.theme-mendix .ui-icon-zoomin { background-position: -128px -112px; }
+.theme-mendix .ui-icon-zoomout { background-position: -144px -112px; }
+.theme-mendix .ui-icon-search { background-position: -160px -112px; }
+.theme-mendix .ui-icon-wrench { background-position: -176px -112px; }
+.theme-mendix .ui-icon-gear { background-position: -192px -112px; }
+.theme-mendix .ui-icon-heart { background-position: -208px -112px; }
+.theme-mendix .ui-icon-star { background-position: -224px -112px; }
+.theme-mendix .ui-icon-link { background-position: -240px -112px; }
+.theme-mendix .ui-icon-cancel { background-position: 0 -128px; }
+.theme-mendix .ui-icon-plus { background-position: -16px -128px; }
+.theme-mendix .ui-icon-plusthick { background-position: -32px -128px; }
+.theme-mendix .ui-icon-minus { background-position: -48px -128px; }
+.theme-mendix .ui-icon-minusthick { background-position: -64px -128px; }
+.theme-mendix .ui-icon-close { background-position: -80px -128px; }
+.theme-mendix .ui-icon-closethick { background-position: -96px -128px; }
+.theme-mendix .ui-icon-key { background-position: -112px -128px; }
+.theme-mendix .ui-icon-lightbulb { background-position: -128px -128px; }
+.theme-mendix .ui-icon-scissors { background-position: -144px -128px; }
+.theme-mendix .ui-icon-clipboard { background-position: -160px -128px; }
+.theme-mendix .ui-icon-copy { background-position: -176px -128px; }
+.theme-mendix .ui-icon-contact { background-position: -192px -128px; }
+.theme-mendix .ui-icon-image { background-position: -208px -128px; }
+.theme-mendix .ui-icon-video { background-position: -224px -128px; }
+.theme-mendix .ui-icon-script { background-position: -240px -128px; }
+.theme-mendix .ui-icon-alert { background-position: 0 -144px; }
+.theme-mendix .ui-icon-info { background-position: -16px -144px; }
+.theme-mendix .ui-icon-notice { background-position: -32px -144px; }
+.theme-mendix .ui-icon-help { background-position: -48px -144px; }
+.theme-mendix .ui-icon-check { background-position: -64px -144px; }
+.theme-mendix .ui-icon-bullet { background-position: -80px -144px; }
+.theme-mendix .ui-icon-radio-on { background-position: -96px -144px; }
+.theme-mendix .ui-icon-radio-off { background-position: -112px -144px; }
+.theme-mendix .ui-icon-pin-w { background-position: -128px -144px; }
+.theme-mendix .ui-icon-pin-s { background-position: -144px -144px; }
+.theme-mendix .ui-icon-play { background-position: 0 -160px; }
+.theme-mendix .ui-icon-pause { background-position: -16px -160px; }
+.theme-mendix .ui-icon-seek-next { background-position: -32px -160px; }
+.theme-mendix .ui-icon-seek-prev { background-position: -48px -160px; }
+.theme-mendix .ui-icon-seek-end { background-position: -64px -160px; }
+.theme-mendix .ui-icon-seek-start { background-position: -80px -160px; }
+/* ui-icon-seek-first is deprecated, use ui-icon-seek-start instead */
+.theme-mendix .ui-icon-seek-first { background-position: -80px -160px; }
+.theme-mendix .ui-icon-stop { background-position: -96px -160px; }
+.theme-mendix .ui-icon-eject { background-position: -112px -160px; }
+.theme-mendix .ui-icon-volume-off { background-position: -128px -160px; }
+.theme-mendix .ui-icon-volume-on { background-position: -144px -160px; }
+.theme-mendix .ui-icon-power { background-position: 0 -176px; }
+.theme-mendix .ui-icon-signal-diag { background-position: -16px -176px; }
+.theme-mendix .ui-icon-signal { background-position: -32px -176px; }
+.theme-mendix .ui-icon-battery-0 { background-position: -48px -176px; }
+.theme-mendix .ui-icon-battery-1 { background-position: -64px -176px; }
+.theme-mendix .ui-icon-battery-2 { background-position: -80px -176px; }
+.theme-mendix .ui-icon-battery-3 { background-position: -96px -176px; }
+.theme-mendix .ui-icon-circle-plus { background-position: 0 -192px; }
+.theme-mendix .ui-icon-circle-minus { background-position: -16px -192px; }
+.theme-mendix .ui-icon-circle-close { background-position: -32px -192px; }
+.theme-mendix .ui-icon-circle-triangle-e { background-position: -48px -192px; }
+.theme-mendix .ui-icon-circle-triangle-s { background-position: -64px -192px; }
+.theme-mendix .ui-icon-circle-triangle-w { background-position: -80px -192px; }
+.theme-mendix .ui-icon-circle-triangle-n { background-position: -96px -192px; }
+.theme-mendix .ui-icon-circle-arrow-e { background-position: -112px -192px; }
+.theme-mendix .ui-icon-circle-arrow-s { background-position: -128px -192px; }
+.theme-mendix .ui-icon-circle-arrow-w { background-position: -144px -192px; }
+.theme-mendix .ui-icon-circle-arrow-n { background-position: -160px -192px; }
+.theme-mendix .ui-icon-circle-zoomin { background-position: -176px -192px; }
+.theme-mendix .ui-icon-circle-zoomout { background-position: -192px -192px; }
+.theme-mendix .ui-icon-circle-check { background-position: -208px -192px; }
+.theme-mendix .ui-icon-circlesmall-plus { background-position: 0 -208px; }
+.theme-mendix .ui-icon-circlesmall-minus { background-position: -16px -208px; }
+.theme-mendix .ui-icon-circlesmall-close { background-position: -32px -208px; }
+.theme-mendix .ui-icon-squaresmall-plus { background-position: -48px -208px; }
+.theme-mendix .ui-icon-squaresmall-minus { background-position: -64px -208px; }
+.theme-mendix .ui-icon-squaresmall-close { background-position: -80px -208px; }
+.theme-mendix .ui-icon-grip-dotted-vertical { background-position: 0 -224px; }
+.theme-mendix .ui-icon-grip-dotted-horizontal { background-position: -16px -224px; }
+.theme-mendix .ui-icon-grip-solid-vertical { background-position: -32px -224px; }
+.theme-mendix .ui-icon-grip-solid-horizontal { background-position: -48px -224px; }
+.theme-mendix .ui-icon-gripsmall-diagonal-se { background-position: -64px -224px; }
+.theme-mendix .ui-icon-grip-diagonal-se { background-position: -80px -224px; }
+
+
+/* Misc visuals
+----------------------------------*/
+
+/* Corner radius */
+.theme-mendix .ui-corner-all,
+.theme-mendix .ui-corner-top,
+.theme-mendix .ui-corner-left,
+.theme-mendix .ui-corner-tl {
+	border-top-left-radius: 3px;
+}
+.theme-mendix .ui-corner-all,
+.theme-mendix .ui-corner-top,
+.theme-mendix .ui-corner-right,
+.theme-mendix .ui-corner-tr {
+	border-top-right-radius: 3px;
+}
+.theme-mendix .ui-corner-all,
+.theme-mendix .ui-corner-bottom,
+.theme-mendix .ui-corner-left,
+.theme-mendix .ui-corner-bl {
+	border-bottom-left-radius: 3px;
+}
+.theme-mendix .ui-corner-all,
+.theme-mendix .ui-corner-bottom,
+.theme-mendix .ui-corner-right,
+.theme-mendix .ui-corner-br {
+	border-bottom-right-radius: 3px;
+}
+
+/* Overlays */
+.theme-mendix .ui-widget-overlay {
+	background: #aaaaaa;
+	opacity: .3;
+	filter: Alpha(Opacity=30); /* support: IE8 */
+}
+.theme-mendix .ui-widget-shadow {
+	-webkit-box-shadow: 0px 0px 5px #666666;
+	box-shadow: 0px 0px 5px #666666;
+}
