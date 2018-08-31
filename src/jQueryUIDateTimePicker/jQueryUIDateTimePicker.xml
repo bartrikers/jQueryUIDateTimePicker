@@ -80,10 +80,18 @@
             <category>Date options</category>
             <description>Custom date format that is used, e.g. mm/dd/yy or dd-mm-yy. See jQueryUI documentation (http://api.jqueryui.com/datepicker/#utility-formatDate) for possible formats.</description>
         </property>
-        <property key="defaultDate" type="string" required="false">
-            <caption>Default date</caption>
+        <property key="defaultDateStr" type="string" required="false">
+            <caption>Default date (string)</caption>
             <category>Date options</category>
-            <description>Optional default date to start with, should be corresponding to the date format.</description>
+            <description>Optional default date of the datepicker, should be corresponding to the date format.</description>
+        </property>
+		<property key="defaultDateAttr" type="attribute" required="false">
+            <caption>Default date (attribute)</caption>
+            <category>Date options</category>
+            <description>Optional string attribute with a default date of the datepicker, should be corresponding to the date format.</description>
+            <attributeTypes>
+                <attributeType name="String"/>
+            </attributeTypes>
         </property>
         <property key="yearRange" type="string" defaultValue="-100:+100" required="false">
             <caption>Range</caption>

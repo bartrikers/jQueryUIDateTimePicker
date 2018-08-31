@@ -92,28 +92,34 @@ define([
 
             // substracting the first two characters of the Mendix user language ("nl_NL")
 			var mxConfig = mx.session.getConfig();
-            var mxLanguage = mxConfig.uiconfig.locale.replace("_", "-");
-			var mxLanguageSub = mxLanguage.substring(0, 2);
-
-			//first, try to find language based on full locale string, but replace underscore ("en_US" -> "en-US")
-            var datePickerLanguage = $.datepicker.regional[mxLanguage];
-            var timePickerLanguage = $.timepicker.regional[mxLanguage];
+            if (mxConfig.uiconfig.locale) { 
+            	var mxLanguage = mxConfig.uiconfig.locale.replace("_", "-");
+            	var mxLanguageSub = mxLanguage.substring(0, 2);
+            	//first, try to find language based on full locale string, but replace underscore ("en_US" -> "en-US")
+            	var datePickerLanguage = $.datepicker.regional[mxLanguage];
+            	var timePickerLanguage = $.timepicker.regional[mxLanguage];
 			
-			//if not found, try to find language based on first two characters ("en")
-			if (!datePickerLanguage) {
-				datePickerLanguage = $.datepicker.regional[mxLanguageSub];
-			}
-			if (!timePickerLanguage) {
-				timePickerLanguage = $.timepicker.regional[mxLanguageSub];
-			}
-			
-			// if still not found, use default ("")
-			if (!datePickerLanguage) {
-				datePickerLanguage = $.datepicker.regional[""];
-			}
-			if (!timePickerLanguage) {
-				timePickerLanguage = $.timepicker.regional[""];
-			}
+				//if not found, try to find language based on first two characters ("en")
+				if (!datePickerLanguage) {
+					datePickerLanguage = $.datepicker.regional[mxLanguageSub];
+				}
+				if (!timePickerLanguage) {
+					timePickerLanguage = $.timepicker.regional[mxLanguageSub];
+				}
+				
+				// if still not found, use default ("")
+				if (!datePickerLanguage) {
+					datePickerLanguage = $.datepicker.regional[""];
+				}
+				if (!timePickerLanguage) {
+					timePickerLanguage = $.timepicker.regional[""];
+				}
+            }
+            else {
+            	// if still not found, use default ("")			 
+				datePickerLanguage = $.datepicker.regional[""];						 
+				timePickerLanguage = $.timepicker.regional[""];			
+            }
 			
 			//determine placeholder texts
 			var dateFormat = datePickerLanguage.dateFormat;
@@ -137,6 +143,9 @@ define([
 					if (this.params.firstDay) {
 						datePickerLanguage.firstDay = this.params.firstDay;
 					}
+					if (this.params.dateFormat) {
+						datePickerLanguage.dateFormat = this.params.dateFormat;
+					}
                     $(this._datePicker).datepicker("option", datePickerLanguage);
                 }
 				defaultPlaceholderText = dateFormat;
@@ -155,6 +164,9 @@ define([
                 if (typeof datePickerLanguage !== "undefined") {
 					if (this.params.firstDay) {
 						datePickerLanguage.firstDay = this.params.firstDay;
+					}
+					if (this.params.dateFormat) {
+						datePickerLanguage.dateFormat = this.params.dateFormat;
 					}
                     $(this._datePicker).datepicker("option", datePickerLanguage);
                 }
@@ -197,6 +209,17 @@ define([
         update: function update(obj, callback) {
             logger.debug(this.id + ".update");
             this._contextObj = obj;
+			// set default date of DatePicker (set here, instead of in setParams, because we don't have a contextobject there yet)
+			var defaultDate = '';
+			if (this.defaultDateStr) {
+				defaultDate = this.defaultDateStr;
+			}
+			if (this.defaultDateAttr && this._contextObj){
+				defaultDate = this._contextObj.get(this.defaultDateAttr);
+			}
+			$(this._datePicker).datepicker( "option", "defaultDate", defaultDate);
+			
+			//update datepicker with value
             this._updateDatepicker(this._datePicker, obj.get(this.dateAttribute));
             this._resetSubscriptions();
             callback();
@@ -255,7 +278,6 @@ define([
                 params.changeMonth = this.showMonthYearMenu;
                 params.changeYear = this.showMonthYearMenu;
                 params.yearRange = this.yearRange === "" ? "-100:+100" : this.yearRange;
-                params.defaultDate = this.defaultDate;
                 params.showWeek = this.showWeekNr;
 				params.dateFormat = dateFormat;
 				if (this.firstDay !== "Default") {
