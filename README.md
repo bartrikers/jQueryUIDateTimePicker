@@ -35,7 +35,7 @@ Add the widget to a dataview and select a datetime attribute the date/time shoul
   #### Date options
   _Custom date format_: set a custom date format to be used. See jQueryUI documentation (http://api.jqueryui.com/datepicker/#utility-formatDate) for possible formats
   
-  _Default date_: The default date. Should be corresponding to the date format
+  _Default date_: The default date of the datapicker (attribute or string). Should be corresponding to the date format
   
   _Range_: Range in years. Can be either absolute (1970:2018) or relative (-10:+10)
   
