@@ -48,12 +48,12 @@
 				<enumerationValue key="vertical">Vertical</enumerationValue>
 			</enumerationValues>
 		</property>
-		<property key="placeholderText" type="string" required="false">
+		<property key="placeholderText" type="translatableString" required="false">
             <caption>Placeholder text</caption>
             <category>Display</category>
             <description></description>
         </property>
-        <property key="iconTooltip" type="string" required="false">
+        <property key="iconTooltip" type="translatableString" required="false">
             <caption>Icon tooltip</caption>
             <category>Display</category>
             <description>Tooltip on the calendar icon.</description>
@@ -145,26 +145,32 @@
             <description>Show +/- buttons next to time-slider</description>
         </property>
         <!-- Behavior options -->
-        <property key="onChangeMicroflow" type="microflow" required="false">
+		<property key="onChangeMicroflow" type="microflow" required="false">
             <caption>On change microflow</caption>
             <category>Behavior</category>
             <description></description>
             <returnType type="Void" />
         </property>
+		 <property key="onChangeNanoflow" type="nanoflow" required="false">
+            <caption>On change nanoflow</caption>
+            <category>Behavior</category>
+            <description></description>
+            <returnType type="Void" />
+        </property>
 		<property key="onChangeMicroflowProgress" type="boolean" defaultValue="false">
-            <caption>Show progress bar</caption>
+            <caption>Show progress bar (microflow only)</caption>
             <category>Behavior</category>
             <description></description>
         </property>
-		<property key="onChangeMicroflowProgressMsg" type="string" required="false">
-            <caption>Progress message</caption>
+		<property key="onChangeMicroflowProgressMsg" type="translatableString" required="false">
+            <caption>Progress message (microflow only)</caption>
             <category>Behavior</category>
             <description></description>
         </property>
 		<property key="onChangeMicroflowAsync" type="boolean" defaultValue="false">
             <caption>Asynchronous</caption>
             <category>Behavior</category>
-            <description>Microflow call type.</description>
+            <description>Microflow call type (microflow only)</description>
         </property>
 	</properties>
 </widget>

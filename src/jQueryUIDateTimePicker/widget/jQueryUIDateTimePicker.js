@@ -45,6 +45,7 @@ define([
         yearRange: "",
         defaultDate: "",
         onChangeMicroflow: "",
+		onChangeNanoflow: "",
         onChangeMicroflowProgress: "",
         onChangeMicroflowProgressMsg: "",
         onChangeMicroflowAsync: "",
@@ -235,8 +236,15 @@ define([
         },
 
         _triggerFocus: function _triggerFocus(element) {
-            logger.debug(this.id + "._triggerFocus");
-            $(element).trigger("focus");
+            logger.debug(this.id + "._triggerFocus4");
+			//trigger focus after delay to prevent weird bug with slider buttons
+			if (this.addSliderButtons) {
+				setTimeout(function(){
+					$(element).trigger("focus");
+				}, 200);
+			} else {
+				$(element).trigger("focus");
+			}
         },
 
         _setParams: function _setParams(dateFormat, timeFormat) {
@@ -329,7 +337,9 @@ define([
                 this._contextObj.set(this.dateAttribute, myDate);
                 if (this.onChangeMicroflow.length > 0) {
                     this._runMicroflow(this._contextObj, this.onChangeMicroflow);
-                }
+                } else if (this.onChangeNanoflow.nanoflow.length > 0) {
+                    this._runNanoflow(this._contextObj, this.onChangeNanoflow);
+				}
             } else {
                 this._contextObj.set(this.dateAttribute, "");
             }
@@ -450,6 +460,18 @@ define([
                 mx.ui.action(mf, parameters, this);
             } else if (cb) {
                 cb();
+            }
+        },
+		_runNanoflow: function _runNanoflow(obj, nf) {
+            if (nf) {
+                mx.data.callNanoflow({
+                    nanoflow: nf,
+                    origin: this.mxform,
+                    context: this.mxcontext,
+                    error: function error(errorObject) {
+                         mx.ui.error("Error executing nanoflow " + nf + " : " + errorObject.message);
+                    }
+                });
             }
         }
     });
