@@ -93,8 +93,15 @@ define([
 
             // substracting the first two characters of the Mendix user language ("nl_NL")
 			var mxConfig = mx.session.getConfig();
-            if (mxConfig.uiconfig.locale) { 
-            	var mxLanguage = mxConfig.uiconfig.locale.replace("_", "-");
+            var localeCode;
+			if (mxConfig.locale) {
+				localeCode = mxConfig.locale.code;
+			} else if (mxConfig.uiconfig.locale) {
+				localeCode = mxConfig.uiconfig.locale;
+			}
+			
+            if (localeCode) { 
+            	var mxLanguage = localeCode.replace("_", "-"); 
             	var mxLanguageSub = mxLanguage.substring(0, 2);
             	//first, try to find language based on full locale string, but replace underscore ("en_US" -> "en-US")
             	var datePickerLanguage = $.datepicker.regional[mxLanguage];
